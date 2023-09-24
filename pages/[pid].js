@@ -36,6 +36,12 @@ export async function getStaticProps(context) {
     return prod.id === productId;
   })
 
+  if (!product) {
+    return {
+      notFound: true
+    }
+  }
+
   return {
     props: {
       loadedProduct: product
@@ -54,7 +60,7 @@ export async function getStaticPaths() {
 
   return {
     paths: pathsWithParams,
-    fallback: false
+    fallback: true
   };
 }
 
